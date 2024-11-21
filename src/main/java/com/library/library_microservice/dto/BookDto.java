@@ -1,7 +1,12 @@
 package com.library.library_microservice.dto;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.library.library_microservice.entity.Book;
 import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.persistence.Column;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.*;
 
@@ -22,7 +27,9 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class BookDto {
+@JsonSerialize
+@JsonDeserialize
+public class BookDto{
     @NotEmpty(message = "title name cannot be null or empty")
     @Schema(
 
@@ -46,5 +53,19 @@ public class BookDto {
             description = "Date of publishment"
     )
     private LocalDate publishedDate;
+
+    @Schema(
+
+            description = "BookAvailability Status ",
+            example = "AVAILABLE,UNAVAILABLE"
+    )
+    @Enumerated(EnumType.STRING)
+    private Book.BookAvailabilityStatus status;
+
+    private String subtitle;
+    private String publisher;
+    private String description;
+    private String isbn;
+
 
 }
