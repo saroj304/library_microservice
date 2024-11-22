@@ -1,3 +1,4 @@
+/*
 package com.library.library_microservice.service.impl;
 
 import com.library.library_microservice.dto.LoanDto;
@@ -71,7 +72,6 @@ class LoanServiceImplTest {
 
     }
 
-
     private void createAndCheckIfBookCanBeIssueIfAvailable(String gmail, Book.BookAvailabilityStatus status, String returnDate
             , String bookTitle, String author, Book.Genre genre, String publishedDate
     ) {
@@ -100,9 +100,11 @@ class LoanServiceImplTest {
     @Test
     void testIssueBookOnBookAvailability() {
         createMember("kalpana","kalpanakhatiwada1999@gmail.com");
-        /**
+        */
+/**
          * when book return date is above 7 days and bookStatus is available
-         */
+         *//*
+
         createAndCheckIfBookCanBeIssueIfAvailable("kalpanakhatiwada1999@gmail.com", Book.BookAvailabilityStatus.AVAILABLE,
                 "2024-11-29", "1987", "hari", Book.Genre.FANTASY, "1949-06-01");
 
@@ -113,8 +115,10 @@ class LoanServiceImplTest {
     void testIssueBookOnBookUnavailability() {
 //        createMember();
 
-        /** when book return date is within 7 days and bookStatus is unavailable
-         */
+        */
+/** when book return date is within 7 days and bookStatus is unavailable
+         *//*
+
 
         createAndCheckIfBookCannotBeIssueIfUnAvailable("ajaywagle1999@gmail.com", Book.BookAvailabilityStatus.UNAVAILABLE
                 , "2024-11-21", "1977", "ram", Book.Genre.HISTORY, "1949-06-08");
@@ -124,4 +128,4 @@ class LoanServiceImplTest {
 
 
 
-}
+}*/

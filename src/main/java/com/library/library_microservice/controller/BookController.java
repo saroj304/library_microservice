@@ -1,6 +1,5 @@
 package com.library.library_microservice.controller;
 
-import com.fasterxml.jackson.databind.JsonNode;
 import com.library.library_microservice.constants.Constants;
 import com.library.library_microservice.dto.BookDto;
 import com.library.library_microservice.dto.CustomPageResponse;
@@ -11,7 +10,6 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.ExampleObject;
-import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;

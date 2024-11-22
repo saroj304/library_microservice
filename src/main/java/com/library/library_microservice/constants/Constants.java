@@ -1,5 +1,8 @@
 package com.library.library_microservice.constants;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class Constants {
     private Constants() {
 
