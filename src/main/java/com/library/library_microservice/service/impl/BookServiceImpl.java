@@ -110,12 +110,36 @@ public class BookServiceImpl implements BookService {
         JsonNode volumeInfoNode = firstItemInList.path("volumeInfo");
 
 
-
-      return   bookMapper.toBookDtoFromJsonNode(volumeInfoNode,isbn);
-
+        return bookMapper.toBookDtoFromJsonNode(volumeInfoNode, isbn);
 
 
     }
+
+    @Override
+    public Page<BookDto> getAllBooks(int offset, int limit) {
+        Pageable pageable = PageRequest.of(offset, limit);
+
+        Page<Book> books = bookRepo.findAll(pageable);
+        if (!books.hasContent()) {
+            throw new ResourceNotFoundException("There is no book record exists");
+        }
+        return bookMapper.toBookDto(books);
+
+    }
+
+    @Override
+    public boolean updateBook(BookDto bookDto) {
+        boolean isUpdated = true;
+        Optional<Book> bookEntity = bookRepo.findById(bookDto.getId());
+        if (bookEntity.isPresent()) {
+
+            bookRepo.save(bookMapper.toBook(bookDto));
+            return  isUpdated;
+        }
+        return !isUpdated;
+
+    }
+
 }
 
 

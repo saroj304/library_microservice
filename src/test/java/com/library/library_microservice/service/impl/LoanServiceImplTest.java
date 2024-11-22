@@ -11,7 +11,6 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 
 import java.time.LocalDate;
 import java.util.Optional;
@@ -45,7 +44,7 @@ class LoanServiceImplTest {
     }
 
 
-    private void createAndCheckIfBookCanBeIssueIfUnAvailable(String gmail, Book.BookAvailabilityStatus status, String returnDate
+    private void createAndCheckIfBookCannotBeIssueIfUnAvailable(String gmail, Book.BookAvailabilityStatus status, String returnDate
             , String bookTitle, String author, Book.Genre genre, String bookPublishedDate) {
 
         Optional<Member> member = memberRepo.findByEmail(gmail);
@@ -117,8 +116,12 @@ class LoanServiceImplTest {
         /** when book return date is within 7 days and bookStatus is unavailable
          */
 
-        createAndCheckIfBookCanBeIssueIfUnAvailable("ajaywagle1999@gmail.com", Book.BookAvailabilityStatus.UNAVAILABLE
+        createAndCheckIfBookCannotBeIssueIfUnAvailable("ajaywagle1999@gmail.com", Book.BookAvailabilityStatus.UNAVAILABLE
                 , "2024-11-21", "1977", "ram", Book.Genre.HISTORY, "1949-06-08");
 
+
     }
+
+
+
 }

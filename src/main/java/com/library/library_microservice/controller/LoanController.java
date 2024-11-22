@@ -3,11 +3,9 @@ package com.library.library_microservice.controller;
 import com.library.library_microservice.constants.Constants;
 import com.library.library_microservice.dto.CustomPageResponse;
 import com.library.library_microservice.dto.LoanDto;
-import com.library.library_microservice.dto.MemberDto;
 import com.library.library_microservice.dto.ResponseDto;
 import com.library.library_microservice.repository.LoanRepo;
 import com.library.library_microservice.service.LoanService;
-import com.library.library_microservice.service.MemberService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.ExampleObject;
@@ -22,8 +20,6 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping(path = "/api", produces = MediaType.APPLICATION_JSON_VALUE)

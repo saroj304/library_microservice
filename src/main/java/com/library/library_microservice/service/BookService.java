@@ -1,9 +1,10 @@
 package com.library.library_microservice.service;
 
-import com.fasterxml.jackson.databind.JsonNode;
 import com.library.library_microservice.dto.BookDto;
 import com.library.library_microservice.dto.Filter;
 import com.library.library_microservice.entity.Book;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotEmpty;
 import org.springframework.data.domain.Page;
 
 public interface BookService {
@@ -15,4 +16,9 @@ public interface BookService {
 
 
     BookDto fetchBookDetails(String isbn);
+
+    Page<BookDto> getAllBooks(int offset, int limit);
+
+
+    boolean updateBook(@Valid BookDto bookDto);
 }

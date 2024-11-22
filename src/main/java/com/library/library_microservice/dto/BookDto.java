@@ -1,5 +1,7 @@
 package com.library.library_microservice.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.library.library_microservice.entity.Book;
@@ -29,7 +31,16 @@ import java.util.Date;
 @Builder
 @JsonSerialize
 @JsonDeserialize
-public class BookDto{
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public class BookDto {
+    @Schema(
+
+            description = "Id number  of the book",
+            example = "1,2 etc."
+    )
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    private int id;
+
     @NotEmpty(message = "title name cannot be null or empty")
     @Schema(
 
@@ -60,11 +71,28 @@ public class BookDto{
             example = "AVAILABLE,UNAVAILABLE"
     )
     @Enumerated(EnumType.STRING)
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private Book.BookAvailabilityStatus status;
-
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private String subtitle;
+    @Schema(
+
+            description = "Name of the publisher",
+            example = "saroj khatiwada"
+    )
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private String publisher;
+    @Schema(
+
+            description = "detail description of the book",
+            example = "Set in the Roaring Twenties, The Great Gatsby follows the mysterious Jay Gatsby as he throws lavish parties in hopes of reuniting with his lost love, Daisy Buchanan. Through the eyes of narrator Nick Carraway, the novel explores themes of love, wealth, and the American Dream. Gatsby’s obsession with the past leads to tragic consequences, making this a poignant exploration of longing, deception, and the emptiness of material success. The novel is a timeless critique of the pursuit of happiness through wealth and status."
+    )
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private String description;
+    @Schema(
+            description = "unique identifier of the book"
+    )
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private String isbn;
 
 

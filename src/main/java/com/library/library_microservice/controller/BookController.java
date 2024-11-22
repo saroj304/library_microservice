@@ -25,7 +25,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.processing.Filer;
+
 
 @RestController
 @RequestMapping(path = "/api", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -66,7 +66,7 @@ public class BookController {
                     )
             )
     })
-    @PostMapping(path = "/add_book", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(path = "/add_book")
     public ResponseEntity<ResponseDto> addBook(@Valid @RequestBody BookDto bookDto) {
         bookService.addBook(bookDto);
         return ResponseEntity
@@ -169,6 +169,7 @@ public class BookController {
         return ResponseEntity.status(HttpStatus.OK)
                 .body(response);
     }
+
     @Operation(
             summary = "Fetch book details by ISBN",
             description = "This API retrieves detailed information about a book based on the provided ISBN."
@@ -198,10 +199,54 @@ public class BookController {
             )
     })
     @GetMapping("/{isbn}")
-    public ResponseEntity<BookDto> getBookDetails(@PathVariable String isbn) {
+    public ResponseEntity<BookDto> getBookDetails(@NotEmpty(message = "id cannot be null or empty") @PathVariable String isbn) {
         BookDto fetchedBookDetails = bookService.fetchBookDetails(isbn);
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(fetchedBookDetails);
     }
+
+
+    @Operation(summary = "Get All Books", description = "Fetch a paginated list of books from the database.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200",
+                    description = "Books retrieved successfully",
+                    content = @Content(mediaType = "application/json"
+                    )),
+            @ApiResponse(responseCode = "404",
+                    description = "No books found in the database",
+                    content = @Content(mediaType = "application/json"
+                    ))
+    })
+    @GetMapping("/getAllBooks")
+    public ResponseEntity<CustomPageResponse<BookDto>> getAllBooks(@NotEmpty(message = "id cannot be null or empty") @RequestParam int offset,
+                                                                   @NotEmpty(message = "id cannot be null or empty") @RequestParam int limit) {
+        Page<BookDto> listOfBooks = bookService.getAllBooks(offset, limit);
+        CustomPageResponse<BookDto> response = new CustomPageResponse<>(listOfBooks);
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(response);
+    }
+
+    @PutMapping("/updateBook")
+    public ResponseEntity<ResponseDto> updateBook(@Valid @RequestBody BookDto bookDto) {
+        boolean updatedResult = bookService.updateBook(bookDto);
+
+        if (updatedResult) {
+            return ResponseEntity.status(HttpStatus.OK)
+                    .body(ResponseDto
+                            .builder()
+                            .statusCode(Constants.STATUS_200)
+                            .message(Constants.MESSAGE_200)
+                            .build());
+        }
+        return ResponseEntity
+                .status(HttpStatus.NOT_FOUND)
+                .body(ResponseDto
+                        .builder()
+                        .statusCode(Constants.STATUS_404)
+                        .message(Constants.MESSAGE_404)
+                        .build());
+    }
+
 }
