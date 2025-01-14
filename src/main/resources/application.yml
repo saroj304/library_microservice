@@ -3,7 +3,7 @@ spring:
     name: library-microservice
 
   profiles:
-    active: prod
+    active: dev
 
 server:
   port: 8080

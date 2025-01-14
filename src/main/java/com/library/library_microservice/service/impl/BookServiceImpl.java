@@ -23,12 +23,18 @@ import java.time.LocalDate;
 import java.util.Optional;
 
 @Service
-@AllArgsConstructor
+
 public class BookServiceImpl implements BookService {
     private final BookRepo bookRepo;
     private final BookMapper bookMapper;
     private final GoogleBooksClient feignClient;
     private Environment environment;
+
+    public BookServiceImpl(BookRepo bookRepo, BookMapper bookMapper, GoogleBooksClient feignClient) {
+        this.bookRepo = bookRepo;
+        this.bookMapper = bookMapper;
+        this.feignClient = feignClient;
+    }
 
     @Override
     public Book addBook(BookDto bookDto) {

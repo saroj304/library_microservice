@@ -74,23 +74,28 @@ public class BookDto {
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private Book.BookAvailabilityStatus status;
     @JsonInclude(JsonInclude.Include.NON_NULL)
+    @Schema(hidden = true)
     private String subtitle;
     @Schema(
 
             description = "Name of the publisher",
-            example = "saroj khatiwada"
+            example = "saroj khatiwada",
+            hidden = true
     )
     @JsonInclude(JsonInclude.Include.NON_NULL)
+
     private String publisher;
     @Schema(
 
             description = "detail description of the book",
-            example = "Set in the Roaring Twenties, The Great Gatsby follows the mysterious Jay Gatsby as he throws lavish parties in hopes of reuniting with his lost love, Daisy Buchanan. Through the eyes of narrator Nick Carraway, the novel explores themes of love, wealth, and the American Dream. Gatsby’s obsession with the past leads to tragic consequences, making this a poignant exploration of longing, deception, and the emptiness of material success. The novel is a timeless critique of the pursuit of happiness through wealth and status."
+            example = "Set in the Roaring Twenties, The Great Gatsby follows the mysterious Jay Gatsby as he throws lavish parties in hopes of reuniting with his lost love, Daisy Buchanan. Through the eyes of narrator Nick Carraway, the novel explores themes of love, wealth, and the American Dream. Gatsby’s obsession with the past leads to tragic consequences, making this a poignant exploration of longing, deception, and the emptiness of material success. The novel is a timeless critique of the pursuit of happiness through wealth and status.",
+            hidden = true
     )
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private String description;
     @Schema(
-            description = "unique identifier of the book"
+            description = "unique identifier of the book",
+            hidden = true
     )
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private String isbn;
