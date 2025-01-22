@@ -4,7 +4,9 @@ import com.library.library_microservice.Mapper.BookMapper;
 import com.library.library_microservice.dto.BookDto;
 import com.library.library_microservice.entity.Book;
 import com.library.library_microservice.exception.AlreadyExistsException;
+import com.library.library_microservice.exception.ResourceNotFoundException;
 import com.library.library_microservice.repository.BookRepo;
+import org.antlr.v4.runtime.atn.SemanticContext;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
@@ -167,6 +169,68 @@ public class BookServiceTest {
         //        then- verify the output
         org.junit.jupiter.api.Assertions.assertNotNull(fetchedBookDtos);
         org.junit.jupiter.api.Assertions.assertEquals(pagedBookListDtos, fetchedBookDtos);
+        Assertions.assertThat(fetchedBookDtos.getSize()).isEqualTo(pagedBookListDtos.getSize());
+    }
+
+    @Test
+    @DisplayName("Should throw ResourceNotFoundException if the books doesnot exists")
+    public void givenOffsetAndLimit_whenGetAllBooks_thenReturnResourceNotFoundException() {
+        //given -precondition or setup
+        int offset = 0;
+        int limit = 10;
+        Pageable pageable = PageRequest.of(offset, limit);
+
+       /* List<BookDto> bookDtos = Arrays.asList(bookDto1, bookDto2);
+        Page<BookDto> pagedBookListDtos = new PageImpl<>(bookDtos, Pageable.unpaged(), bookDtos.size());*/
+
+        BDDMockito.given(bookRepo.findAll(pageable)).willReturn(Page.empty());
+//        BDDMockito.given(bookMapper.toBookDto(pagedBookList)).willReturn(pagedBookListDtos);
+
+        //        when- action or a behaviour that we are going to test
+        org.junit.jupiter.api.Assertions.assertThrows(ResourceNotFoundException.class, () -> {
+            bookService.getAllBooks(offset, limit);
+        });
+
+        //        then- verify the output
+        BDDMockito.verify(bookMapper, Mockito.never()).toBookDto(Mockito.any());
+
+    }
+
+    @Test
+    public void givenBook_whenUpdateBook_thenReturnTrue() {
+        //given -precondition or setup
+
+        Book bookEntity = Book.builder()
+                .id(1)
+                .genre(Book.Genre.BIOGRAPHY)
+                .author("Saroj")
+                .title("The Old Man")
+                .status(Book.BookAvailabilityStatus.AVAILABLE)
+                .publishedDate(LocalDate.of(2054, 2, 27))
+                .build();
+
+        BookDto bookDto = BookDto.builder()
+                .id(1)
+                .genre(Book.Genre.BIOGRAPHY)
+                .author("Saroj")
+                .title("The Old Man")
+                .status(Book.BookAvailabilityStatus.AVAILABLE)
+                .publishedDate(LocalDate.of(2054, 2, 27))
+                .build();
+
+        BDDMockito.given(bookRepo.findById(bookEntity.getId())).willReturn(Optional.of(bookEntity));
+        BDDMockito.given(bookMapper.toBook(bookDto)).willReturn(bookEntity);
+        BDDMockito.given(bookRepo.save(bookEntity)).willReturn(Mockito.any());
+        bookEntity.setAuthor("ajay");
+        //        when- action or a behavioue that we are going to test
+        boolean result = bookService.updateBook(bookDto);
+        //        then- verify the output
+        Assertions.assertThat(result).isTrue();
+        Assertions.assertThat(bookRepo.findById(bookEntity.getId()).get().getAuthor())
+                .isEqualTo("ajay");
+        // Verify that save was called with the correct entity
+        BDDMockito.verify(bookRepo).save(bookEntity);
+
     }
 }
 
