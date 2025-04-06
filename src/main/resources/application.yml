@@ -1,9 +1,10 @@
 spring:
   application:
     name: library-microservice
-
   profiles:
-    active: dev
+    active: prod
+  liquibase:
+    change-log: classpath:src/main/resources/db/changelog/changelog.sql
 
 server:
   port: 8080
