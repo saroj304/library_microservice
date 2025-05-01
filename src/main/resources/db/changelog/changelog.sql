@@ -1,1 +1,8 @@
---sql formatted liquibase
+-- --liquibase formatted sql
+--
+-- --changeset saroj:1
+-- CREATE TABLE STUDENT(ID int)
+--
+-- --changeset saroj:2
+-- ALTER TABLE STUDENT
+--     ADD COLUMN NAME VARCHAR (50)

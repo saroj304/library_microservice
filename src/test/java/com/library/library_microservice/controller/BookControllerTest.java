@@ -52,7 +52,7 @@ public class BookControllerTest {
 
     @Test
     public void givenBookObject_whenAddBook_thenReturnHttpStatusCreated() throws Exception {
-
+System.gc();
         // Given - precondition or setup
         BookDto bookDto = BookDto.builder()
                 .id(1)

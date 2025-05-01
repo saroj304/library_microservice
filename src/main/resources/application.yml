@@ -3,9 +3,12 @@ spring:
     name: library-microservice
   profiles:
     active: prod
-  liquibase:
-    change-log: classpath:src/main/resources/db/changelog/changelog.sql
-    enabled: true
+
+  # ——— Exclude JavaMelody auto-configuration ———
+  autoconfigure:
+    exclude:
+      - net.bull.javamelody.JavaMelodyAutoConfiguration
+
 server:
   port: 8080
 
@@ -13,3 +16,13 @@ google:
   books:
     api:
       key: AIzaSyDgCwXgqdppgstEUUgIqEONyGWx78KAJxI
+
+# JavaMelody Configuration
+javamelody:
+  enabled: true                       # Enables JavaMelody monitoring
+  spring-monitoring-enabled: true     # Enables Spring-specific AOP monitoring
+  monitoring-page-url: /monitoring    # URL path for the monitoring UI
+  init-parameters:
+    log: true
+    # Exclude all static assets plus the monitoring endpoint itself
+  excluded-datasources: ""           # No datasources excluded by default

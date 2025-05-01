@@ -16,6 +16,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
+import net.bull.javamelody.MonitoredWithSpring;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -33,6 +34,7 @@ import org.springframework.web.bind.annotation.*;
         name = "Book Management API",
         description = "REST APIs for managing books: Create, Delete, Update, and Fetch data"
 )
+@MonitoredWithSpring
 public class BookController {
 
     private final BookService bookService;
