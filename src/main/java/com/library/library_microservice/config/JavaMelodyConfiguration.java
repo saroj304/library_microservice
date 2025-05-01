@@ -23,6 +23,11 @@ public class JavaMelodyConfiguration {
     public static final String REGISTRATION_BEAN_NAME = "javamelody-registration";
 
     @Bean
+    /**
+     * Registers JavaMelody’s HTTP session listener once (skips if already registered)
+     *SessionListener (which watches when user sessions start and end)
+     */
+
     public ServletListenerRegistrationBean<HttpSessionListener> monitoringSessionListener(ServletContext ctx) {
         // Pass in a real SessionListener instance
         ServletListenerRegistrationBean<HttpSessionListener> bean =
@@ -35,7 +40,10 @@ public class JavaMelodyConfiguration {
         return bean;
     }
 
-
+    /**
+     * // Registers JavaMelody’s web filter for all http requests, enabling request timing and excluding static assets
+     * @return
+     */
     @Bean(name = REGISTRATION_BEAN_NAME)
     public FilterRegistrationBean monitoringFilter() {
         FilterRegistrationBean bean = new FilterRegistrationBean();
@@ -61,16 +69,16 @@ public class JavaMelodyConfiguration {
     }
 
     /**
-     * AOP advisor that applies JavaMelody’s @MonitoredWithSpring advice
+     * Creates an advisor to apply JavaMelody monitoring
      * only to beans or methods explicitly annotated with @MonitoredWithSpring.
      */
-    @Bean
-    public MonitoringSpringAdvisor monitoringSpringAdvisor() {
-        // Pointcut that only picks up methods annotated with @MonitoredWithSpring
-        AnnotationMatchingPointcut pc =
-                new AnnotationMatchingPointcut(null, MonitoredWithSpring.class);
-        return new MonitoringSpringAdvisor(pc);
-    }
+//    @Bean
+//    public MonitoringSpringAdvisor monitoringSpringAdvisor() {
+//        // Pointcut that only picks up methods annotated with @MonitoredWithSpring
+//        AnnotationMatchingPointcut pc =
+//                new AnnotationMatchingPointcut(null, MonitoredWithSpring.class);
+//        return new MonitoringSpringAdvisor(pc);
+//    }
 
     /**
      * Monitor all beans annotated with @Service.

@@ -34,7 +34,6 @@ import org.springframework.web.bind.annotation.*;
         name = "Book Management API",
         description = "REST APIs for managing books: Create, Delete, Update, and Fetch data"
 )
-@MonitoredWithSpring
 public class BookController {
 
     private final BookService bookService;
