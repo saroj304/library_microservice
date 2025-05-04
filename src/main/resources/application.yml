@@ -24,5 +24,10 @@ javamelody:
   monitoring-page-url: /monitoring    # URL path for the monitoring UI
   init-parameters:
     log: true
-    # Exclude all static assets plus the monitoring endpoint itself
   excluded-datasources: ""           # No datasources excluded by default
+
+# Liquibase configuration
+
+
+
+

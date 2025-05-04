@@ -73,11 +73,11 @@
             <artifactId>lombok</artifactId>
             <optional>true</optional>
         </dependency>
-      <!--  <dependency>
+        <dependency>
             <groupId>org.liquibase</groupId>
             <artifactId>liquibase-core</artifactId>
-        </dependency>-->
-        <!-- https://mvnrepository.com/artifact/org.hibernate.orm/hibernate-core -->
+        </dependency>
+<!--         //https://mvnrepository.com/artifact/org.hibernate.orm/hibernate-core-->
         <dependency>
             <groupId>org.hibernate.orm</groupId>
             <artifactId>hibernate-core</artifactId>
@@ -113,14 +113,14 @@
     </dependencyManagement>
     <build>
         <plugins>
-          <!--  <plugin>
+            <plugin>
                 <groupId>org.liquibase</groupId>
                 <artifactId>liquibase-maven-plugin</artifactId>
                 <version>4.31.1</version>
                 <configuration>
                     <propertyFile>src/main/resources/liquibase.properties</propertyFile>
                 </configuration>
-            </plugin>-->
+            </plugin>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
