@@ -1,19 +1,31 @@
+# spring:
+#   config:
+#     activate:
+#       on-profile: prod
+
+
+#   datasource:
+#     url: jdbc:postgresql://localhost:5432/library_microservice
+#     username: postgres
+#     password: password
+#     driver-class-name: org.postgresql.Driver
+
+#   jpa:
+#     hibernate:
+#       ddl-auto: update
+#     properties:
+#       hibernate:
+#         dialect: org.hibernate.dialect.PostgreSQLDialect
+
 spring:
-  config:
-    activate:
-      on-profile: prod
-
-
   datasource:
-    url: jdbc:postgresql://localhost:5432/library_microservice
-    username: postgres
-    password: password
-    driver-class-name: org.postgresql.Driver
-
+    url: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
   jpa:
     hibernate:
       ddl-auto: update
     properties:
       hibernate:
-        dialect: org.hibernate.dialect.PostgreSQLDialect
-
+        dialect: org.hibernate.dialect.H2Dialect
