@@ -1,7 +1,7 @@
-databaseChangeLog:
-  - include:
-      file: classpath:/db/changelog/dbchangelog.xml
-      relativeToChangelogFile: false
-  - include:
-      file: classpath:/db/changelog/changelog.sql
-      relativeToChangelogFile: false
+#databaseChangeLog:
+#  - include:
+#      file: classpath:/db/changelog/dbchangelog.xml
+#      relativeToChangelogFile: false
+#  - include:
+#      file: classpath:/db/changelog/changelog.sql
+#      relativeToChangelogFile: false

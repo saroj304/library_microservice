@@ -1,57 +1,57 @@
-<?xml version="1.1" encoding="UTF-8" standalone="no"?>
-<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-latest.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
-    <changeSet author="webguardianx (generated)" id="1746338259401-1">
-        <createTable tableName="department">
-            <column name="id" type="INTEGER">
-                <constraints nullable="false" primaryKey="true" primaryKeyName="department_pkey"/>
-            </column>
-            <column name="name" type="VARCHAR(50)">
-                <constraints nullable="false"/>
-            </column>
-            <column defaultValueBoolean="true" name="active" type="BOOLEAN"/>
-        </createTable>
-    </changeSet>
-    <changeSet author="webguardianx (generated)" id="1746338259401-2">
-        <createTable tableName="book">
-            <column name="id" type="INTEGER">
-                <constraints nullable="false" primaryKey="true" primaryKeyName="book_pkey"/>
-            </column>
-            <column name="author" type="VARCHAR(255)"/>
-            <column name="genre" type="VARCHAR(255)"/>
-            <column name="published_date" type="date"/>
-            <column name="status" type="VARCHAR(255)"/>
-            <column name="title" type="VARCHAR(255)"/>
-        </createTable>
-    </changeSet>
-    <changeSet author="webguardianx (generated)" id="1746338259401-3">
-        <createTable tableName="loan">
-            <column name="id" type="INTEGER">
-                <constraints nullable="false" primaryKey="true" primaryKeyName="loan_pkey"/>
-            </column>
-            <column name="loan_date" type="date"/>
-            <column name="return_date" type="date"/>
-            <column name="status" type="VARCHAR(255)"/>
-            <column name="book_id" type="INTEGER"/>
-            <column name="member_id" type="INTEGER"/>
-        </createTable>
-    </changeSet>
-    <changeSet author="webguardianx (generated)" id="1746338259401-4">
-        <createSequence cacheSize="1" cycle="false" dataType="bigint" incrementBy="50" maxValue="9223372036854775807" minValue="1" sequenceName="native" startValue="1"/>
-    </changeSet>
-    <changeSet author="webguardianx (generated)" id="1746338259401-5">
-        <createTable tableName="member">
-            <column name="id" type="INTEGER">
-                <constraints nullable="false" primaryKey="true" primaryKeyName="member_pkey"/>
-            </column>
-            <column name="email" type="VARCHAR(255)"/>
-            <column name="member_ship_date" type="TIMESTAMP WITHOUT TIME ZONE"/>
-            <column name="name" type="VARCHAR(255)"/>
-        </createTable>
-    </changeSet>
-    <changeSet author="webguardianx (generated)" id="1746338259401-6">
-        <addForeignKeyConstraint baseColumnNames="book_id" baseTableName="loan" constraintName="fk88c0ydlo57pcgp137tntrgqx1" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="book" validate="true"/>
-    </changeSet>
-    <changeSet author="webguardianx (generated)" id="1746338259401-7">
-        <addForeignKeyConstraint baseColumnNames="member_id" baseTableName="loan" constraintName="fkskvlv9lnj3plivn0grmqf950f" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="member" validate="true"/>
-    </changeSet>
-</databaseChangeLog>
+<!--<?xml version="1.1" encoding="UTF-8" standalone="no"?>-->
+<!--<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-latest.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">-->
+<!--    <changeSet author="webguardianx (generated)" id="1746338259401-1">-->
+<!--        <createTable tableName="department">-->
+<!--            <column name="id" type="INTEGER">-->
+<!--                <constraints nullable="false" primaryKey="true" primaryKeyName="department_pkey"/>-->
+<!--            </column>-->
+<!--            <column name="name" type="VARCHAR(50)">-->
+<!--                <constraints nullable="false"/>-->
+<!--            </column>-->
+<!--            <column defaultValueBoolean="true" name="active" type="BOOLEAN"/>-->
+<!--        </createTable>-->
+<!--    </changeSet>-->
+<!--    <changeSet author="webguardianx (generated)" id="1746338259401-2">-->
+<!--        <createTable tableName="book">-->
+<!--            <column name="id" type="INTEGER">-->
+<!--                <constraints nullable="false" primaryKey="true" primaryKeyName="book_pkey"/>-->
+<!--            </column>-->
+<!--            <column name="author" type="VARCHAR(255)"/>-->
+<!--            <column name="genre" type="VARCHAR(255)"/>-->
+<!--            <column name="published_date" type="date"/>-->
+<!--            <column name="status" type="VARCHAR(255)"/>-->
+<!--            <column name="title" type="VARCHAR(255)"/>-->
+<!--        </createTable>-->
+<!--    </changeSet>-->
+<!--    <changeSet author="webguardianx (generated)" id="1746338259401-3">-->
+<!--        <createTable tableName="loan">-->
+<!--            <column name="id" type="INTEGER">-->
+<!--                <constraints nullable="false" primaryKey="true" primaryKeyName="loan_pkey"/>-->
+<!--            </column>-->
+<!--            <column name="loan_date" type="date"/>-->
+<!--            <column name="return_date" type="date"/>-->
+<!--            <column name="status" type="VARCHAR(255)"/>-->
+<!--            <column name="book_id" type="INTEGER"/>-->
+<!--            <column name="member_id" type="INTEGER"/>-->
+<!--        </createTable>-->
+<!--    </changeSet>-->
+<!--    <changeSet author="webguardianx (generated)" id="1746338259401-4">-->
+<!--        <createSequence cacheSize="1" cycle="false" dataType="bigint" incrementBy="50" maxValue="9223372036854775807" minValue="1" sequenceName="native" startValue="1"/>-->
+<!--    </changeSet>-->
+<!--    <changeSet author="webguardianx (generated)" id="1746338259401-5">-->
+<!--        <createTable tableName="member">-->
+<!--            <column name="id" type="INTEGER">-->
+<!--                <constraints nullable="false" primaryKey="true" primaryKeyName="member_pkey"/>-->
+<!--            </column>-->
+<!--            <column name="email" type="VARCHAR(255)"/>-->
+<!--            <column name="member_ship_date" type="TIMESTAMP WITHOUT TIME ZONE"/>-->
+<!--            <column name="name" type="VARCHAR(255)"/>-->
+<!--        </createTable>-->
+<!--    </changeSet>-->
+<!--    <changeSet author="webguardianx (generated)" id="1746338259401-6">-->
+<!--        <addForeignKeyConstraint baseColumnNames="book_id" baseTableName="loan" constraintName="fk88c0ydlo57pcgp137tntrgqx1" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="book" validate="true"/>-->
+<!--    </changeSet>-->
+<!--    <changeSet author="webguardianx (generated)" id="1746338259401-7">-->
+<!--        <addForeignKeyConstraint baseColumnNames="member_id" baseTableName="loan" constraintName="fkskvlv9lnj3plivn0grmqf950f" deferrable="false" initiallyDeferred="false" onDelete="NO ACTION" onUpdate="NO ACTION" referencedColumnNames="id" referencedTableName="member" validate="true"/>-->
+<!--    </changeSet>-->
+<!--</databaseChangeLog>-->
