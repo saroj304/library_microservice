@@ -11,6 +11,7 @@
     <groupId>com.library</groupId>
     <artifactId>library-microservice</artifactId>
     <version>0.0.1-SNAPSHOT</version>
+    <packaging>war</packaging>
     <name>library-microservice</name>
     <description>A Spring Boot-based microservice for managing books, members, and loans in a library system
     </description>
